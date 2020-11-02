@@ -8,9 +8,9 @@ This project features the capstone project for the Data Science Specialisation o
 
 **Final Report :** https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/final_report/final_report.html
 
-**Shiny Application : ** https://nchin212.shinyapps.io/word_prediction_app/
+**Shiny Application :** https://nchin212.shinyapps.io/word_prediction_app/
 
-**Pitch Presentation : ** https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/pitch_presentation/pitch_presentation.html
+**Pitch Presentation :** https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/pitch_presentation/pitch_presentation.html
 
 
 
