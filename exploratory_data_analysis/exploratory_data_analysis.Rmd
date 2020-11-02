@@ -1,0 +1,90 @@
+---
+title: "Word Prediction - Exploratory Data Analysis"
+author: Nicholas Chin Wei Lun
+date: "1 November 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+## Synopsis
+
+This document details some exploratory analysis done on the dataset. It will help us to determine how large the files are and the number of characters in each line of text. We will also determine the most frequent words and phrases in the dataset.
+
+## Loading in the Data
+
+Load in data cleaning file. 
+```{r cache=TRUE}
+source("../data_cleaning/data_cleaning.r")
+```
+
+The following variables will be used for analysis:
+
+- **blogs** - blogs dataset
+- **news** - news dataset
+- **twitter** - twitter dataset
+- **combined** - combined dataset of blogs, news and twitter datasets
+- **combined_sample** - sample of combined dataset of blogs, news and twitter datasets
+- **dfCount1** - 1gram dataframe consisting of number of each 1gram
+- **dfCount2** - 2gram dataframe consisting of number of each 2gram
+- **dfCount3** - 3gram dataframe consisting of number of each 3gram
+
+Full details of the data cleaning process can be seen [here]()
+
+Load in libraries.
+```{r}
+library(wordcloud)
+library(RColorBrewer)
+library(dplyr)
+```
+
+## Exploratory Data Analysis
+
+### Number of Lines and Characters
+
+Let's check the line count for each dataset and summary for the number of characters in the combined dataset.
+```{r}
+data.frame(line_count = c(length(blogs), length(news), length(twitter), length(combined)), row.names = c('Blogs', 'News', 'Twitter', 'Combined'))
+```
+
+```{r}
+summary(nchar(combined))
+```
+
+There appears to be over 4 million lines in the combined dataset which is too large for analysis, which is why we took a sample of it. The shortest line has 1 character while the longest line has over 40,000 characters.
+
+Let's plot a histogram to observe the distribution of number of characters in the combined sample. We removed lines with more than 1000 characters as they constitute a very small percentage of the data.
+```{r}
+combined_subset <- combined_sample[nchar(combined_sample) < 1000]
+hist(nchar(combined_subset), xlab="Number of Characters", main="Histogram of Number of Characters")
+```
+
+The histogram appears to be skewed towards the right, with a majority of lines having less than 200 characters.
+
+### Unigram
+
+To observe the most frequent words, we plot a word cloud as shown below:
+```{r}
+dfCount1 <- dfCount1 %>% arrange(desc(count))
+wordcloud(dfCount1$ngrams, dfCount1$count, min.freq = 1, max.words=200, random.order=FALSE, rot.per=0.35, colors=brewer.pal(8, "Dark2"))
+```
+
+### Bigram
+
+Plot a word cloud for the most frequent bigrams.
+```{r}
+dfCount2 <- dfCount2 %>% arrange(desc(count))
+wordcloud(dfCount2$ngrams, dfCount2$count, min.freq = 1, max.words=200, random.order=FALSE, rot.per=0.35, colors=brewer.pal(8, "Dark2"))
+```
+
+### Trigram
+
+Plot a word cloud for the most frequent trigrams.
+```{r}
+dfCount3 <- dfCount3 %>% arrange(desc(count))
+wordcloud(dfCount3$ngrams, dfCount3$count, min.freq = 1, max.words=50, random.order=FALSE, rot.per=0.35, colors=brewer.pal(8, "Dark2"))
+```
+
+As expected, the most common ngrams consists of stopwords which were not removed during the data cleaning process to improve prediction accuracy.
