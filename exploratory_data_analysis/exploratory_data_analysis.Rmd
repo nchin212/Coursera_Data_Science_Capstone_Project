@@ -31,7 +31,7 @@ The following variables will be used for analysis:
 - **dfCount2** - 2gram dataframe consisting of number of each 2gram
 - **dfCount3** - 3gram dataframe consisting of number of each 3gram
 
-Full details of the data cleaning process can be seen [here]()
+Full details of the data cleaning process can be seen [here](https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/data_cleaning/data_cleaning.html)
 
 Load in libraries.
 ```{r}

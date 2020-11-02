@@ -1,0 +1,10 @@
+name: word_prediction_app
+title:
+username:
+account: nchin212
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3142765
+bundleId: 3809752
+url: https://nchin212.shinyapps.io/word_prediction_app/
+when: 1604305671.31355

@@ -17,11 +17,11 @@ In this project, the stupid backoff algorithm will be used to build a predictive
 
 Relevant links:
 
-** Shiny Application : ** []()
+**Shiny Application : ** https://nchin212.shinyapps.io/word_prediction_app/
 
-** Pitch Presentation : **
+**Pitch Presentation : ** https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/pitch_presentation/pitch_presentation.html
 
-** Repository : **
+**Github Repository : ** https://github.com/nchin212/Coursera_Data_Science_Capstone_Project
 
 ## Data
 
@@ -68,7 +68,7 @@ The stupid backoff scores for each ngram have been precomputed using the above a
 
 The full data cleaning process can be seen in the following link:
 
-**Data Cleaning : ** [](https://www.google.com)
+**Data Cleaning : ** https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/data_cleaning/data_cleaning.html
 
 ## Exploratory Data Analysis
 
@@ -76,7 +76,7 @@ Some exploratory data analysis is also done to check the number of lines and num
 
 The full exploratory data analysis process can be seen in the following link:
 
-**Exploratory Data Analysis** : * [here]()
+**Exploratory Data Analysis** : * https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/exploratory_data_analysis/exploratory_data_analysis.html
 
 ## Modelling
 
@@ -90,7 +90,7 @@ The model we will be using is stupid backoff. The stupid backoff scores have alr
 
 Load in functions from other file.
 ```{r, warning=FALSE, message=FALSE}
-source('../shiny/functions.R')
+source('../word_prediction_app/functions.R')
 source('../data_cleaning/data_cleaning.R')
 ```
 
@@ -101,7 +101,7 @@ The following functions will be used:
 
 The functions can be seen in the following link:
 
-**Functions : ** []()
+**Functions : ** https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/word_prediction_app/functions.R
 
 The user inputs the text as follows:
 ```{r}
@@ -134,7 +134,7 @@ source('../validation/validation.R')
 
 The full validation process can be seen in the following link:
 
-**Validation : ** []()
+**Validation : ** https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/validation/validation.R
 
 The accuracy table is printed as follows:
 ```{r}
@@ -150,10 +150,10 @@ Perhaps other models such has Katz's backoff model and BERT could be implemented
 
 This section describes the challenges faced during this project.
 
-**Challenge 1 - NLP is not easy : ** This was my first project on natural language processing and I had barely any knowledge of it. I had to do much research independently and it was a challenging process. Natural language processing is a huge field and little did I know that there were many NLP libraries developed in R. 
+**Challenge 1 - NLP is not easy : ** This was my first project on natural language processing and I had barely any knowledge of it. This course had a hands off approach so I had to do much research independently. It took several weeks but it was an interesting experience. Natural language processing is a huge field and little did I know that there were this many NLP libraries developed in R. 
 
 **Challenge 2 - Memory : ** Due to the dataset containing millions of lines, it was difficult to determine a suitable sample size as I had to balance between sample size and prediction accuracy of the model. Certain functions in R used up more memory as compared to others and slow computation time was an issue several times. The stupid backoff score computation and retrieval of the scores also got more computationally intensive for 4grams and 5grams so I had to leave them out. Thus, this project has taught me to consider computer memory when working on large datasets.
 
 ## Final Thoughts
 
-Overall, this was a very rewarding project as I had gained much knowledge on the aspects of word prediction and I was satisfied with the final application designed. If you have made it this far, thank you for taking the time to read through my project! Many thanks to Coursera for providing me this opportunity to try out a new field.
+Overall, this was a very rewarding project as I had gained much knowledge on the aspects of word prediction and I was very satisfied with the final application designed. If you have made it this far, thank you for taking the time to read through my project! Many thanks to Coursera for providing me this opportunity to try out a new field.

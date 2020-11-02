@@ -1,6 +1,6 @@
 # Load functions in other files
 source("../data_cleaning/data_cleaning.r")
-source('../shiny/functions.R')
+source('../word_prediction_app/functions.R')
 
 set.seed(101)
 n <- 1/1000

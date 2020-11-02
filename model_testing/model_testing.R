@@ -1,5 +1,5 @@
 # Load functions from other file
-source('../shiny/functions.R')
+source('../word_prediction_app/functions.R')
 source('../data_cleaning/data_cleaning.R')
 
 # Input text sample 

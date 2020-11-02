@@ -1,5 +1,5 @@
 # Load in functions from other file
-source('../shiny/functions.R')
+source('../word_prediction_app/functions.R')
 
 # Load in libraries
 library(caTools)

@@ -24,7 +24,7 @@ By precomputing the stupid backoff scores, it will save computation time and the
 Load in functions from other script. 
 
 ```{r}
-source('../shiny/functions.R')
+source('../word_prediction_app/functions.R')
 ```
 
 The following functions will be used:
@@ -34,7 +34,7 @@ The following functions will be used:
 - **fun.count** - computes the number of each ngram
 - **fun.score** - computes the stupid backoff scores
 
-Full details of the functions can be seen in [functions.R]().
+Full details of the functions can be seen in [functions.R](https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/word_prediction_app/functions.R).
 
 Load in libraries.
 ```{r}

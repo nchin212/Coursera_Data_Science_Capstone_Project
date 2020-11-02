@@ -387,9 +387,10 @@ summary {
 <h2>Synopsis</h2>
 <p>Around the world, people are spending an increasing amount of time on their mobile devices for email, social networking, banking and a whole range of other activities. But typing on mobile devices can be a serious pain. The goal of this project is to learn and build predictive text models in R.</p>
 <p>In this project, the stupid backoff algorithm will be used to build a predictive text model. The model will predict the next word based on a certain score and it will output several possibilities based on the number of suggestions the user wants. A Shiny application will be created with this model. When the user types in some words, the model will give some predictions for the next word and a wordcloud of predictions will be displayed on screen.</p>
-<p>Relevant links: ** Shiny Application : ** <a href></a></p>
-<p>** Pitch Presentation : **</p>
-<p>** Repository : **</p>
+<p>Relevant links:</p>
+<p><strong>Shiny Application : </strong> <a href="https://nchin212.shinyapps.io/word_prediction_app/" class="uri">https://nchin212.shinyapps.io/word_prediction_app/</a></p>
+<p><strong>Pitch Presentation : </strong> <a href="https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/pitch_presentation/pitch_presentation.html" class="uri">https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/pitch_presentation/pitch_presentation.html</a></p>
+<p><strong>Github Repository : </strong> <a href="https://github.com/nchin212/Coursera_Data_Science_Capstone_Project" class="uri">https://github.com/nchin212/Coursera_Data_Science_Capstone_Project</a></p>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
@@ -419,13 +420,13 @@ summary {
 </ul>
 <p>The stupid backoff scores for each ngram have been precomputed using the above algorithm. This will help to save computation time and the prediction model will be able to predict words faster.</p>
 <p>The full data cleaning process can be seen in the following link:</p>
-<p><strong>Data Cleaning : </strong> <a href="https://www.google.com"></a></p>
+<p><strong>Data Cleaning : </strong> <a href="https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/data_cleaning/data_cleaning.html" class="uri">https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/data_cleaning/data_cleaning.html</a></p>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2>Exploratory Data Analysis</h2>
 <p>Some exploratory data analysis is also done to check the number of lines and number of characters. Wordclouds are used to plot the most frequent 1grams, 2grams and 3grams.</p>
 <p>The full exploratory data analysis process can be seen in the following link:</p>
-<p><strong>Exploratory Data Analysis</strong> : * <a href>here</a></p>
+<p><strong>Exploratory Data Analysis</strong> : * <a href="https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/exploratory_data_analysis/exploratory_data_analysis.html" class="uri">https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/exploratory_data_analysis/exploratory_data_analysis.html</a></p>
 </div>
 <div id="modelling" class="section level2">
 <h2>Modelling</h2>
@@ -434,12 +435,12 @@ summary {
 <p><strong>Step 2 - Implement the stupid backoff algorithm as seen above : </strong> We have to retrieve the scores and account for the backoff (alpha = 0.4) accordingly. If the user keys in no input, the most common words in the 1grams dataset will be predicted as the next word.</p>
 <p><strong>Step 3 - Collate the scores and arrange them from highest to lowest : </strong> The word with the highest score is predicted to be the next most likely word.</p>
 <p>Load in functions from other file.</p>
-<pre class="r"><code>source(&#39;../shiny/functions.R&#39;)
+<pre class="r"><code>source(&#39;../word_prediction_app/functions.R&#39;)
 source(&#39;../data_cleaning/data_cleaning.R&#39;)</code></pre>
 <p>The following functions will be used:</p>
 <p><strong>fun.input</strong> - Takes in the user input, tokenizes it and retrieves the last 2 words of the input text <strong>fun.predict</strong> - Retrieves the possible next words and stupid backoff scores according to the algorithm seen above</p>
 <p>The functions can be seen in the following link:</p>
-<p><strong>Functions : </strong> <a href></a></p>
+<p><strong>Functions : </strong> <a href="https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/word_prediction_app/functions.R" class="uri">https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/word_prediction_app/functions.R</a></p>
 <p>The user inputs the text as follows:</p>
 <pre class="r"><code>input_text &lt;- &#39;a great&#39;</code></pre>
 <p>The inputs will be tokenized and the last 2 words will be stored as separate strings. If the user enters only 1 word, input1 will be an empty string. If the user enter no words, input1 and input2 will be empty strings.</p>
@@ -467,7 +468,7 @@ fun.predict(input1, input2)</code></pre>
 <p>To determine its accuracy, we run the model on the validation set prepared during the data cleaning process.</p>
 <pre class="r"><code>source(&#39;../validation/validation.R&#39;)</code></pre>
 <p>The full validation process can be seen in the following link:</p>
-<p><strong>Validation : </strong> <a href></a></p>
+<p><strong>Validation : </strong> <a href="https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/validation/validation.R" class="uri">https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/validation/validation.R</a></p>
 <p>The accuracy table is printed as follows:</p>
 <pre class="r"><code>accuracy_table</code></pre>
 <pre><code>##           Pred5 Pred3 Pred1
@@ -479,12 +480,12 @@ fun.predict(input1, input2)</code></pre>
 <div id="challenges" class="section level2">
 <h2>Challenges</h2>
 <p>This section describes the challenges faced during this project.</p>
-<p><strong>Challenge 1 - NLP is not easy : </strong> This was my first project on natural language processing and I had barely any knowledge of it. I had to do much research independently and it was a challenging process. Natural language processing is a huge field and little did I know that there were many NLP libraries developed in R.</p>
+<p><strong>Challenge 1 - NLP is not easy : </strong> This was my first project on natural language processing and I had barely any knowledge of it. This course had a hands off approach so I had to do much research independently. It took several weeks but it was an interesting experience. Natural language processing is a huge field and little did I know that there were this many NLP libraries developed in R.</p>
 <p><strong>Challenge 2 - Memory : </strong> Due to the dataset containing millions of lines, it was difficult to determine a suitable sample size as I had to balance between sample size and prediction accuracy of the model. Certain functions in R used up more memory as compared to others and slow computation time was an issue several times. The stupid backoff score computation and retrieval of the scores also got more computationally intensive for 4grams and 5grams so I had to leave them out. Thus, this project has taught me to consider computer memory when working on large datasets.</p>
 </div>
 <div id="final-thoughts" class="section level2">
 <h2>Final Thoughts</h2>
-<p>Overall, this was a very rewarding project as I had gained much knowledge on the aspects of word prediction and I was satisfied with the final application designed. If you have made it this far, thank you for taking the time to read through my project! Many thanks to Coursera for providing me this opportunity to try out a new field.</p>
+<p>Overall, this was a very rewarding project as I had gained much knowledge on the aspects of word prediction and I was very satisfied with the final application designed. If you have made it this far, thank you for taking the time to read through my project! Many thanks to Coursera for providing me this opportunity to try out a new field.</p>
 </div>
 
 
