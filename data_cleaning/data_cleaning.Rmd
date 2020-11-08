@@ -1,0 +1,144 @@
+---
+title: "Word Prediction - Data Cleaning"
+author: "Nicholas Chin Wei Lun"
+date: "1 November 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+## Synopsis
+
+This document contains the steps taken to clean the data for the project. The end goal is to create create 1grams, 2grams and 3grams with 3 columns:
+
+- **prevword** - the previous word/words of the ngram (note that 1gram does not have this column)
+- **nextword** - the last word of the ngram, which is the predicted next word
+- **score** - the scores computed using stupid backoff
+
+By precomputing the stupid backoff scores, it will save computation time and the prediction model will be able to predict words faster.
+
+## Loading in the Data
+
+Load in functions from other script. 
+
+```{r}
+source('../word_prediction_app/functions.R')
+```
+
+The following functions will be used:
+
+- **fun.corpus** - creates a quanteda corpus and reshapes it into sentences
+- **fun.tokenize** - tokenizes the corpus into 1gram, 2grams and 3grams
+- **fun.count** - computes the number of each ngram
+- **fun.score** - computes the stupid backoff scores
+
+Full details of the functions can be seen in [functions.R](https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/word_prediction_app/functions.R).
+
+Load in libraries.
+```{r}
+library(caTools)
+library(tidyr)
+```
+
+Read in the data and combine them.
+```{r}
+blogs <- readLines('../data/en_US/en_US.blogs.txt')
+news <- readLines('../data/en_US/en_US.news.txt')
+twitter <- readLines('../data/en_US/en_US.twitter.txt',skipNul = TRUE) 
+combined <- c(blogs, news, twitter)
+```
+
+Check its first few rows and number of lines.
+```{r}
+head(combined)
+length(combined)
+```
+
+It appears to have over 4 million lines. Since the dataset is too large for analysis, we chose to sample 1% of the data.
+```{r}
+set.seed(101)
+n <- 1/100
+combined_sample <- sample(combined, length(combined) * n)
+```
+
+Split into training and validation sets. The following analysis will focus only on the training set.
+```{r}
+split <- sample.split(combined_sample, 0.8)
+train <- subset(combined_sample, split == T)
+valid <- subset(combined_sample, split == F)
+```
+
+## Tokenization
+
+Create a quanteda corpus and reshape the data into sentences.
+```{r}
+train <- fun.corpus(train)
+```
+
+Tokenize the data into 1gram, 2grams and 3grams. The text is first converted to lower case. Numbers, symbols, punctuation, separators and social media tags are then removed. Stemming and removing stopwords are not done as it would affect the prediction accuracy.
+```{r}
+train1 <- fun.tokenize(train)
+train2 <- fun.tokenize(train, 2)
+train3 <- fun.tokenize(train, 3)
+```
+
+## Compute Stupid Backoff Scores
+
+Convert character vectors into dataframe and compute counts of each ngram.
+```{r}
+df1 <- data.frame(ngrams = train1)
+dfCount1 <- fun.count(df1)
+
+df2 <- data.frame(ngrams = train2)
+dfCount2 <- fun.count(df2)
+
+df3 <- data.frame(ngrams = train3)
+dfCount3 <- fun.count(df3)
+```
+
+Now we compute the stupid backoff scores and split the words in the ngrams.
+```{r}
+dfTrain1 <- fun.score(dfCount1) 
+
+dfTrain2 <- fun.score(dfCount2,dfCount1) %>%
+    separate(ngrams, c('prevword', 'nextword'), " ")
+
+dfTrain3 <- fun.score(dfCount3, dfCount2, words = 2) %>%
+    separate(ngrams, c('word1','word2','nextword'), " ")
+```
+
+## Profanity Filtering
+
+Profanity filtering is also applied to the dataset. The words are taken from the [List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words](https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words).
+```{r}
+profanity <- readLines("../data/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words.txt")
+dfTrain1 <- filter(dfTrain1, !nextword %in% profanity)
+dfTrain2 <- filter(dfTrain2, !prevword %in% profanity &!nextword %in% profanity)
+dfTrain3 <- filter(dfTrain3, !word1 %in% profanity & !word2 %in% profanity & !nextword %in% profanity)
+```
+
+Finally, we combine back word1 and word2 in the 3gram to produce the required columns.
+```{r}
+dfTrain3$prevword <- paste(dfTrain3$word1,dfTrain3$word2)
+dfTrain3 <- dfTrain3 %>% select(prevword,nextword,score)
+```
+
+## Results
+
+Now, we check the dataframes to see if the data cleaning was performed smoothly.
+```{r}
+head(dfTrain1)
+head(dfTrain2)
+head(dfTrain3)
+```
+
+Save the resulting dataframes if necessary.
+```{r}
+#saveRDS(dfTrain1, file = 'dfTrain1.rds')
+#saveRDS(dfTrain2, file = 'dfTrain2.rds')
+#saveRDS(dfTrain3, file = 'dfTrain3.rds')
+```
+
+
