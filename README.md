@@ -2,7 +2,7 @@
   
 ## Overview
   
-- Created an application that predicts the next word based on the user's input words
+- Created an application that predicts the next word based on the user's input words, achieved an accuracy score of 68%
 - Combined text from US blogs, news and twitter
 - Used quanteda to tokenize text to 1gram, 2grams and 3grams
 - Applied stupid backoff algorithm to compute scores for each word
