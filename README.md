@@ -14,7 +14,7 @@
 - Language: R
 - Packages: tidyr, caTools, dplyr, quanteda, wordcloud, RColorBrewer
 - Data: [Coursera](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip)
-- Topics: R, NLP, Text Prediction, Shiny
+- Topics: R, NLP, Text Prediction, Stupid Backoff, Shiny
 
 ## Data
 
@@ -115,5 +115,5 @@ Compute the model accuracy, where accuracy means the percentage of cases where t
 
 **Pitch Presentation :** https://nchin212.github.io/Coursera_Data_Science_Capstone_Project/pitch_presentation/pitch_presentation.html
 
-
+**Portfolio :** https://nchin212.github.io/post/word_prediction/
 
