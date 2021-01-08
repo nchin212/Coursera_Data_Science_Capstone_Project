@@ -91,6 +91,20 @@ Compute the model accuracy, where accuracy means the percentage of cases where t
 | Previous2 | 0.68  | 0.61  | 0.50  |
 | Previous1 | 0.60  | 0.50  | 0.37  |
 
+## Application
+
+[Shiny Application Link](https://nchin212.shinyapps.io/word_prediction_app/)
+
+![png](https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/pitch_presentation/user_interface.png)
+
+1. The user types in some text in the text box
+
+2. The application displays the predicted words in the table, arranged from highest score to lowest score, where the word at the top is the highest possibility of being the next word
+
+3. The application also displays the word cloud of the predicted words according to their score
+
+4. The user is able to use the slider to select the number of words predicted and can also search for words in the table by typing into the search text box
+
 
 
 ## Relevant Links
