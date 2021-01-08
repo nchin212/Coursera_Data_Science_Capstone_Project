@@ -12,7 +12,7 @@
 ## Tools Used
 
 - Language: R
-- Packages: tidyr, caTools, dplyr, quanteda, wordcloud, RColorBrewer, caTools
+- Packages: tidyr, caTools, dplyr, quanteda, wordcloud, RColorBrewer
 - Data: [Coursera](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip)
 - Topics: R, NLP, Text Prediction, Shiny
 
@@ -93,7 +93,7 @@ Compute the model accuracy, where accuracy means the percentage of cases where t
 
 ## Application
 
-[Shiny Application Link](https://nchin212.shinyapps.io/word_prediction_app/)
+[Shiny Application](https://nchin212.shinyapps.io/word_prediction_app/)
 
 ![png](https://github.com/nchin212/Coursera_Data_Science_Capstone_Project/blob/gh-pages/pitch_presentation/user_interface.png)
 
